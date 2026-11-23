@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Você 💜</title>
+<title>Uma surpresa para você 💜</title>
 
 <style>
 * {
@@ -15,156 +15,223 @@
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
-    font-family: 'Segoe UI', sans-serif;
+    background: #050008;
     color: white;
-    background: linear-gradient(-45deg,
-    #030027, #101080, #4b0082, #160044);
-    background-size: 400% 400%;
-    animation: fundo 12s ease infinite;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
 }
 
-@keyframes fundo {
-    0% {background-position: 0% 50%}
-    50% {background-position: 100% 50%}
-    100% {background-position: 0% 50%}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #6500a044, transparent 65%);
+    pointer-events: none;
 }
 
 .container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 25px;
     position: relative;
     z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 35px 15px 110px;
 }
 
 h1 {
-    font-size: clamp(45px, 9vw, 85px);
-    color: #e9d5ff;
-    text-shadow: 0 0 15px #a855f7,
-                 0 0 40px #7c3aed;
-    animation: pulsar 2s infinite;
+    font-size: clamp(35px, 8vw, 60px);
+    color: #e9c5ff;
+    text-shadow: 0 0 20px #a020f0, 0 0 45px #8a2be2;
+    animation: brilho 2s infinite alternate;
 }
 
-@keyframes pulsar {
-    50% {transform: scale(1.08)}
+@keyframes brilho {
+    to {
+        text-shadow: 0 0 35px #d000ff, 0 0 65px #8a2be2;
+    }
 }
 
-.subtitulo {
+.sub {
     margin-top: 15px;
-    color: #bfdbfe;
-    letter-spacing: 4px;
+    color: #c084fc;
+    letter-spacing: 2px;
     font-size: 13px;
 }
 
-.coracao-principal {
-    font-size: 85px;
-    margin: 20px;
-    animation: bater 1.2s infinite;
-    filter: drop-shadow(0 0 20px #d946ef);
-}
-
-@keyframes bater {
-    0%,100% {transform: scale(1)}
-    50% {transform: scale(1.25)}
-}
-
-.card {
-    width: min(90%, 550px);
-    padding: 35px 20px;
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: 25px;
-    background: rgba(255,255,255,.09);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 0 40px rgba(147,51,234,.3);
-}
-
-#love {
-    min-height: 45px;
-    font-size: clamp(23px, 5vw, 35px);
-    color: #bfdbfe;
-    text-shadow: 0 0 20px #60a5fa;
-    font-weight: bold;
-}
-
-.mensagem {
-    margin-top: 25px;
-    color: #e9d5ff;
+.texto {
     font-size: 17px;
-    line-height: 2;
+    line-height: 1.9;
+    color: #e9d5ff;
+    max-width: 500px;
+    margin: 22px auto;
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(3, 85px);
+    gap: 15px;
+    justify-content: center;
+    margin: 25px auto;
+}
+
+.caixa {
+    width: 85px;
+    height: 85px;
+    border: 1px solid #a855f7;
+    border-radius: 18px;
+    background: linear-gradient(145deg,#270044,#10001d);
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #7200aa55;
+    transition: .3s;
+}
+
+.caixa:hover {
+    transform: translateY(-6px) scale(1.08);
+    box-shadow: 0 0 30px #bd00ff;
+}
+
+.caixa:disabled {
+    opacity: .5;
+    cursor: default;
 }
 
 button {
-    margin: 15px 8px 0;
-    padding: 14px 25px;
-    border: 1px solid #c4b5fd;
-    border-radius: 30px;
+    border: 1px solid #c084fc;
+    background: linear-gradient(90deg,#6200a8,#a000dc);
     color: white;
+    padding: 13px 24px;
+    border-radius: 30px;
     font-size: 15px;
-    font-weight: bold;
     cursor: pointer;
-    background: linear-gradient(90deg,#2563eb,#9333ea);
-    box-shadow: 0 0 20px #9333ea;
+    box-shadow: 0 0 20px #9200ff66;
     transition: .3s;
 }
 
 button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 35px #60a5fa;
+    transform: scale(1.08);
+    box-shadow: 0 0 35px #bf00ff;
 }
 
-#surpresa {
-    margin-top: 25px;
-    color: #f5d0fe;
+#mensagemCaixa {
+    color: #d8b4fe;
+    min-height: 30px;
+    margin: 15px;
+}
+
+#resultado, #declaracao {
+    display: none;
+    animation: aparecer 1s ease;
+    width: 100%;
+}
+
+@keyframes aparecer {
+    from {opacity:0; transform:translateY(25px)}
+    to {opacity:1; transform:translateY(0)}
+}
+
+#resultado h2, #declaracao h2 {
+    color: #e9c5ff;
+    font-size: 28px;
+    text-shadow: 0 0 20px #b000ff;
+}
+
+#coracao {
+    width: 100%;
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+.palavra {
+    fill: #e5b8ff;
+    font-weight: bold;
+    font-size: 13px;
+    filter: drop-shadow(0 0 5px #bc42ff);
+    opacity: 0;
+    animation: formar .8s forwards;
+}
+
+@keyframes formar {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.final {
+    color: #e9d5ff;
     font-size: 20px;
-    line-height: 1.8;
-    animation: surgir 1s ease;
+    line-height: 1.9;
+    margin: 20px auto;
+    text-shadow: 0 0 15px #9d00ff;
 }
 
-@keyframes surgir {
-    from {opacity: 0; transform: translateY(20px)}
-    to {opacity: 1; transform: translateY(0)}
+#playerMusica {
+    width: 300px;
+    max-width: 90vw;
+    margin: 20px auto;
 }
 
-.floating {
+#playerMusica iframe {
+    width: 100%;
+    height: 170px;
+    border: 2px solid #a855f7;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #8a2be2;
+}
+
+#legendaMusical {
     position: fixed;
-    bottom: -50px;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    z-index: 8;
     pointer-events: none;
-    z-index: 1;
+}
+
+#fraseMusical {
+    color: #ead5ff;
+    font-size: clamp(16px, 4vw, 23px);
+    font-weight: bold;
+    text-shadow: 0 0 10px #a020f0, 0 0 25px #8a2be2;
+    animation: frase 5s ease forwards;
+}
+
+@keyframes frase {
+    0% {opacity:0; transform:translateY(20px);}
+    20%,75% {opacity:1; transform:translateY(0);}
+    100% {opacity:0; transform:translateY(-15px);}
+}
+
+.particula {
+    position: fixed;
+    bottom: -40px;
+    pointer-events: none;
+    z-index: 5;
     animation: subir linear forwards;
 }
 
 @keyframes subir {
     to {
-        transform: translateY(-115vh) rotate(720deg);
+        transform: translateY(-115vh) rotate(360deg);
         opacity: 0;
     }
 }
 
-.estrela {
-    position: fixed;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 0 10px white;
-    animation: piscar 2s infinite alternate;
-}
+@media(max-width:400px) {
+    .grade {
+        grid-template-columns: repeat(3,75px);
+        gap: 10px;
+    }
 
-@keyframes piscar {
-    from {opacity: .2; transform: scale(.7)}
-    to {opacity: 1; transform: scale(1.6)}
-}
-
-footer {
-    margin-top: 30px;
-    color: #c4b5fd;
-    font-size: 12px;
-    letter-spacing: 2px;
+    .caixa {
+        width: 75px;
+        height: 75px;
+    }
 }
 </style>
 </head>
@@ -173,144 +240,274 @@ footer {
 
 <div class="container">
 
-    <h1>LOVE</h1>
+<h1>💜 UMA SURPRESA 💜</h1>
 
-    <div class="subtitulo">
-        UM SENTIMENTO SEM FRONTEIRAS
-    </div>
+<div class="sub">UMA PEQUENA AVENTURA PARA VOCÊ</div>
 
-    <div class="coracao-principal">💜</div>
+<div id="playerMusica">
+    <iframe
+        src="https://www.youtube-nocookie.com/embed/o_1aF54DO60"
+        title="Young and Beautiful - Lana Del Rey"
+        allow="encrypted-media; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
 
-    <div class="card">
+<section id="inicio">
 
-        <div id="love">EU TE AMO ❤️</div>
+<div class="texto">
+Existe uma surpresa escondida aqui... 🎁
 
-        <div class="mensagem">
-            Se eu pudesse escolher um lugar
-            para estar agora, escolheria ao
-            seu lado. 💙<br><br>
+<br>
+Mas você precisa encontrá-la!
 
-            Você é uma das partes mais bonitas
-            da minha história. ✨<br>
+<br><br>
+Existem 9 caixinhas misteriosas.
+Apenas uma guarda algo especial.
 
-            Não importa o idioma, a distância
-            ou o tempo... meu coração sempre
-            vai encontrar uma forma de dizer:
-            <b>EU TE AMO!</b> 💗
-        </div>
+<br>
+Será que você consegue encontrar? 💜
+</div>
 
-        <button onclick="surpresa()">
-            💌 Abra sua surpresa
-        </button>
+<div class="grade" id="grade"></div>
 
-        <button onclick="chuva()">
-            💖 Mais amor
-        </button>
+<div id="mensagemCaixa">Escolha uma caixinha! ✨</div>
 
-        <div id="surpresa"></div>
+</section>
 
-    </div>
+<section id="resultado">
 
-    <footer>
-        FEITO COM MUITO AMOR 💜
-    </footer>
+<h2>VOCÊ ENCONTROU! 💜</h2>
 
+<div style="font-size:75px;margin:25px">🎁</div>
+
+<p class="texto">
+Mas sua verdadeira surpresa ainda está chegando...
+
+<br><br>
+Prepare seu coração! ❤️
+</p>
+
+<button onclick="mostrarCoracao()">
+REVELAR MEU PRESENTE 💜
+</button>
+
+</section>
+
+<section id="declaracao">
+
+<h2>UM SENTIMENTO EM TODOS OS IDIOMAS</h2>
+
+<p class="texto">
+Olhe com carinho para o que está se formando...
+</p>
+
+<svg id="coracao" viewBox="0 0 600 530">
+    <g id="palavras"></g>
+</svg>
+
+<div class="final">
+Em português: Eu te amo. ❤️
+
+<br><br>
+Em qualquer idioma, em qualquer lugar,
+em qualquer universo...
+
+<br>
+EU ESCOLHERIA VOCÊ! 💜
+
+<br><br>
+Você é minha surpresa favorita. ✨
+</div>
+
+<button onclick="maisAmor()">MAIS AMOR! 💗</button>
+
+</section>
+
+</div>
+
+<div id="legendaMusical">
+    <span id="fraseMusical">Algumas pessoas são eternas... 💜</span>
 </div>
 
 <script>
 
-const idiomas = [
-"EU TE AMO ❤️",
-"I LOVE YOU 💙",
-"TE AMO 💜",
-"JE T'AIME 💗",
-"ICH LIEBE DICH 💖",
-"TI AMO 💕",
-"愛してる 💜",
-"사랑해 💙",
-"Я ТЕБЯ ЛЮБЛЮ ❤️",
-"أحبك 💗",
-"我爱你 💜",
-"Σ' ΑΓΑΠΩ 💙",
-"IK HOU VAN JOU 💖",
-"VOLIM TE 💕",
-"KOCHAM CIĘ 💗",
-"SENI SEVIYORUM 💜",
-"NAKUPENDA ❤️",
-"MINÄ RAKASTAN SINUA 💙",
-"TE QUIERO 💗",
-"EU TE AMO INFINITAMENTE 💜"
+// JOGO DAS NOVE CAIXINHAS
+
+const grade = document.getElementById("grade");
+
+let premio = Math.floor(Math.random()*9);
+let encontrado = false;
+
+for(let i=0; i<9; i++) {
+
+    const btn = document.createElement("button");
+    btn.className = "caixa";
+    btn.textContent = "🎁";
+
+    btn.onclick = function() {
+
+        if(encontrado) return;
+
+        if(i === premio) {
+
+            encontrado = true;
+            btn.textContent = "💜";
+
+            document.getElementById("mensagemCaixa")
+            .textContent = "VOCÊ ENCONTROU O PRESENTE! 😍";
+
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("resultado").style.display = "block";
+
+            explosao();
+
+        } else {
+
+            btn.textContent = "✨";
+            btn.disabled = true;
+
+            document.getElementById("mensagemCaixa")
+            .textContent = "Ainda não é essa! Tente outra. 💜";
+        }
+    };
+
+    grade.appendChild(btn);
+}
+
+
+// FRASES ROMÂNTICAS
+
+const frases = [
+"Algumas pessoas são eternas... 💜",
+"Você é meu universo favorito.",
+"Existem sentimentos que não precisam de tradução.",
+"Meu lugar favorito é onde você está. 🖤",
+"Em todas as vidas, eu procuraria você.",
+"Você é minha parte favorita da vida.",
+"Meu coração encontrou seu lar. 💗",
+"Eu escolheria você mil vezes."
 ];
 
-let indice = 0;
+let fraseAtual = 0;
 
-setInterval(() => {
-    indice = (indice + 1) % idiomas.length;
-    const elemento = document.getElementById("love");
+function trocarFrase() {
 
-    elemento.style.opacity = 0;
+    const elemento = document.getElementById("fraseMusical");
 
-    setTimeout(() => {
-        elemento.textContent = idiomas[indice];
-        elemento.style.opacity = 1;
-    }, 400);
+    elemento.style.animation = "none";
+    void elemento.offsetWidth;
 
-}, 2300);
+    elemento.textContent = frases[fraseAtual];
 
-function criarParticula() {
-    const elemento = document.createElement("div");
+    elemento.style.animation = "frase 5s ease forwards";
 
-    elemento.className = "floating";
-
-    const emojis = ["💜","💙","💗","💕","❤️","✨","🦋"];
-
-    elemento.textContent =
-    emojis[Math.floor(Math.random() * emojis.length)];
-
-    elemento.style.left = Math.random() * 100 + "vw";
-    elemento.style.fontSize =
-    (15 + Math.random() * 30) + "px";
-
-    elemento.style.animationDuration =
-    (5 + Math.random() * 6) + "s";
-
-    document.body.appendChild(elemento);
-
-    setTimeout(() => elemento.remove(), 11000);
+    fraseAtual = (fraseAtual+1)%frases.length;
 }
 
-setInterval(criarParticula, 350);
+setInterval(trocarFrase,5000);
 
-function criarEstrelas() {
-    for (let i = 0; i < 70; i++) {
-        const estrela = document.createElement("div");
 
-        estrela.className = "estrela";
-        estrela.style.left = Math.random() * 100 + "vw";
-        estrela.style.top = Math.random() * 100 + "vh";
-        estrela.style.animationDelay = Math.random() * 3 + "s";
+// CORAÇÃO COM VÁRIOS IDIOMAS
 
-        document.body.appendChild(estrela);
+const idiomas = [
+"EU TE AMO","I LOVE YOU","TE AMO","JE T'AIME",
+"ICH LIEBE DICH","TI AMO","愛してる","사랑해",
+"Я ТЕБЯ ЛЮБЛЮ","أحبك","我爱你","Σ' ΑΓΑΠΩ",
+"KOCHAM CIĘ","IK HOU VAN JOU","SENI SEVIYORUM",
+"VOLIM TE","NAKUPENDA","TE QUIERO",
+"MINÄ RAKASTAN SINUA","LOVE YOU","AMORE MIO"
+];
+
+function mostrarCoracao() {
+
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("declaracao").style.display = "block";
+
+    criarCoracao();
+    chuvaDeAmor();
+
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function criarCoracao() {
+
+    const grupo = document.getElementById("palavras");
+    const NS = "http://www.w3.org/2000/svg";
+
+    grupo.innerHTML = "";
+
+    for(let i=0; i<280; i++) {
+
+        const t = Math.random()*Math.PI*2;
+
+        const x = 16*Math.pow(Math.sin(t),3);
+
+        const y = 13*Math.cos(t)
+        -5*Math.cos(2*t)
+        -2*Math.cos(3*t)
+        -Math.cos(4*t);
+
+        const texto = document.createElementNS(NS,"text");
+
+        texto.setAttribute("x",300+x*13);
+        texto.setAttribute("y",245-y*13);
+        texto.setAttribute("text-anchor","middle");
+        texto.setAttribute("class","palavra");
+
+        texto.style.animationDelay = (i*.025)+"s";
+
+        texto.textContent = idiomas[i%idiomas.length];
+
+        grupo.appendChild(texto);
     }
 }
 
-function surpresa() {
-    document.getElementById("surpresa").innerHTML =
-    "🌌 Você é meu universo inteiro!<br>" +
-    "💜 Meu pensamento favorito.<br>" +
-    "❤️ Minha pessoa especial.<br>" +
-    "✨ Eu te escolheria mil vezes!";
 
-    chuva();
+// EFEITOS DE CORAÇÕES
+
+function particula() {
+
+    const p = document.createElement("div");
+    p.className = "particula";
+
+    const emojis = ["💜","💗","✨","💕","❤️"];
+
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.left = Math.random()*100+"vw";
+    p.style.fontSize = (15+Math.random()*25)+"px";
+    p.style.animationDuration = (3+Math.random()*4)+"s";
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>p.remove(),7000);
 }
 
-function chuva() {
-    for (let i = 0; i < 45; i++) {
-        setTimeout(criarParticula, i * 60);
+setInterval(particula,450);
+
+function explosao() {
+    for(let i=0;i<40;i++) {
+        setTimeout(particula,i*40);
     }
 }
 
-criarEstrelas();
+function chuvaDeAmor() {
+    for(let i=0;i<80;i++) {
+        setTimeout(particula,i*50);
+    }
+}
+
+function maisAmor() {
+
+    chuvaDeAmor();
+
+    document.querySelector(".final").innerHTML =
+    "💜 EU TE AMO EM TODOS OS IDIOMAS! 💜" +
+    "<br><br>" +
+    "Se o amor tivesse todas as palavras do mundo," +
+    "<br>" +
+    "ainda faltariam palavras para descrever você. ❤️";
+}
 
 </script>
 
